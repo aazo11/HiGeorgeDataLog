@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 
 
 def process_data(zipc):
@@ -14,7 +13,7 @@ def process_data(zipc):
     return finalzip
 
 
-def create_smart_tiles(df: pd.DataFrame):
+def get_tiles(df: pd.DataFrame):
     bk = df[df['Borough' == 'Brooklyn']]
     ix = bk["Total COVID Cases"].idxmax()
     max_cases = bk.loc[ix]
