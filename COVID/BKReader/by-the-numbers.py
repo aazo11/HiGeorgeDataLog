@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from datetime import datetime
 
 def short_format(num):
     num = float('{:.3g}'.format(num))
@@ -25,21 +26,22 @@ def process_data(imported):
     return nyc
 
 def get_tiles(nyc):
+    d_str = datetime.strptime(nyc.tail(1).iloc[0]['Date'], '%m/%d/%Y').strftime('%-m/%-d/%Y')
     return [
         {
             "figure": short_format(nyc.tail(1).iloc[0]['Cases']),
-            "subheader": "On {}".format(nyc.tail(1).iloc[0]['Date'])
+            "subheader": "On {}".format(d_str)
         },
         {
             "figure": short_format(nyc.tail(1).iloc[0]['Deaths']),
-            "subheader": "On {}".format(nyc.tail(1).iloc[0]['Date'])
+            "subheader": "On {}".format(d_str)
         },
         {
             "figure": short_format(sum(nyc['Cases'])),
-            "subheader": "As of {}".format(nyc.tail(1).iloc[0]['Date'])
+            "subheader": "As of {}".format(d_str)
         },
         {
             "figure": short_format(nyc.tail(1).iloc[0]['Total Deaths']),
-            "subheader": "As of {}".format(nyc.tail(1).iloc[0]['Date'])
+            "subheader": "As of {}".format(d_str)
         }
     ]
