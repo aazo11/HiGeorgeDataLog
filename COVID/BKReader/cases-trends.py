@@ -30,19 +30,11 @@ def get_tiles(nyc):
     d_str = datetime.strptime(last_row['Date'], '%m/%d/%Y').strftime('%-m/%-d/%Y')
     return [
         {
-            "figure": short_format(last_row['Cases']),
-            "subheader": "On {}".format(d_str)
-        },
-        {
-            "figure": short_format(last_row['Deaths']),
-            "subheader": "On {}".format(d_str)
-        },
-        {
             "figure": short_format(sum(nyc['Cases'])),
             "subheader": "As of {}".format(d_str)
         },
         {
-            "figure": short_format(last_row['Total Deaths']),
-            "subheader": "As of {}".format(d_str)
+            "figure": short_format(last_row['Cases']),
+            "subheader": "On {}".format(d_str)
         }
     ]
