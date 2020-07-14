@@ -3,6 +3,8 @@ import numpy as np
 from datetime import datetime
 
 def short_format(num):
+    if num >= 0 and num < 10000:
+        return '{:,4g}'.format(num)
     num = float('{:.3g}'.format(num))
     magnitude = 0
     while abs(num) >= 1000:

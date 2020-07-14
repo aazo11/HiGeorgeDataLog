@@ -33,18 +33,18 @@ def get_tiles(nyc):
     return [
         {
             "figure": short_format(last_row['Cases']),
-            "subheader": "On {}".format(d_str)
+            "unit": "On {}".format(d_str)
         },
         {
             "figure": short_format(last_row['Deaths']),
-            "subheader": "On {}".format(d_str)
+            "unit": "On {}".format(d_str)
         },
         {
             "figure": short_format(sum(nyc['Cases'])),
-            "subheader": "As of {}".format(d_str)
+            "unit": "As of {}".format(d_str)
         },
         {
             "figure": short_format(last_row['Total Deaths']),
-            "subheader": "As of {}".format(d_str)
+            "unit": "As of {}".format(d_str)
         }
     ]
