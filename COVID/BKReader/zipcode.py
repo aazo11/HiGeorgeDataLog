@@ -13,7 +13,7 @@ def process_data(zipc):
     return finalzip
 
 
-def get_tiles(df: pd.DataFrame):
+def get_tiles(df):
     bk = df[df['Borough' == 'Brooklyn']]
     ix = bk["Total COVID Cases"].idxmax()
     max_cases = bk.loc[ix]
