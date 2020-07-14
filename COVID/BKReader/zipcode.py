@@ -18,6 +18,6 @@ def get_tiles(bk):
     return [
         {
             "figure": str(max_cases["Total COVID Cases"]),
-            "subheader": "{} - {}".format(max_cases["Neighborhood"], ix)
+            "subheader": "{} - {}".format(max_cases["Neighborhood"].split('/')[0], ix)
         }
     ]
