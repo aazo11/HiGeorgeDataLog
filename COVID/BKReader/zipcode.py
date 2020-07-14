@@ -7,14 +7,12 @@ def process_data(zipc):
     finalzip['Total COVID Deaths'] = zipc['COVID_DEATH_COUNT']
     finalzip['Positive test rate'] = zipc['PERCENT_POSITIVE']
     finalzip['Neighborhood'] = zipc['NEIGHBORHOOD_NAME']
-    finalzip['Borough'] = zipc['BOROUGH_GROUP']
     finalzip.index = zipc['MODIFIED_ZCTA']
 
     return finalzip
 
 
-def get_tiles(df):
-    bk = df[df['Borough'] == 'Brooklyn']
+def get_tiles(bk):
     ix = bk["Total COVID Cases"].idxmax()
     max_cases = bk.loc[ix]
     return [
