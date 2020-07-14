@@ -26,14 +26,15 @@ def process_data(imported):
     return nyc
 
 def get_tiles(nyc):
-    d_str = datetime.strptime(nyc.tail(1).iloc[0]['Date'], '%m/%d/%Y').strftime('%-m/%-d/%Y')
+    last_row = nyc.tail(1).iloc[0]
+    d_str = datetime.strptime(last_row['Date'], '%m/%d/%Y').strftime('%-m/%-d/%Y')
     return [
         {
-            "figure": short_format(nyc.tail(1).iloc[0]['Cases']),
+            "figure": short_format(['Cases']),
             "subheader": "On {}".format(d_str)
         },
         {
-            "figure": short_format(nyc.tail(1).iloc[0]['Deaths']),
+            "figure": short_format(last_row['Deaths']),
             "subheader": "On {}".format(d_str)
         },
         {
@@ -41,7 +42,7 @@ def get_tiles(nyc):
             "subheader": "As of {}".format(d_str)
         },
         {
-            "figure": short_format(nyc.tail(1).iloc[0]['Total Deaths']),
+            "figure": short_format(last_row['Total Deaths']),
             "subheader": "As of {}".format(d_str)
         }
     ]
