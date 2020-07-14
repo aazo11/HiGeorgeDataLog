@@ -14,7 +14,7 @@ def process_data(zipc):
 
 
 def get_tiles(df):
-    bk = df[df['Borough' == 'Brooklyn']]
+    bk = df[df['Borough'] == 'Brooklyn']
     ix = bk["Total COVID Cases"].idxmax()
     max_cases = bk.loc[ix]
     return [
