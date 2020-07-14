@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import pytz
 from datetime import datetime
 
 def short_format(num):
@@ -30,6 +31,7 @@ def process_data(imported):
 def get_tiles(nyc):
     last_row = nyc.tail(1).iloc[0]
     d_str = datetime.strptime(last_row['Date'], '%m/%d/%Y').strftime('%-m/%-d/%Y')
+    d_today_str = datetime.now(pytz.timezone('US/Pacific')).strftime('%-m/%-d/%Y')
     return [
         {
             "figure": short_format(last_row['Deaths']),
@@ -37,6 +39,6 @@ def get_tiles(nyc):
         },
         {
             "figure": short_format(last_row['Total Deaths']),
-            "subheader": "As of {}".format(d_str)
+            "subheader": "As of {}".format(d_today_str)
         }
     ]
