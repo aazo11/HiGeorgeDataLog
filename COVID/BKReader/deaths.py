@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import requests as rq
 import pytz
 from datetime import datetime
 
@@ -12,6 +13,16 @@ def short_format(num):
         magnitude += 1
         num /= 1000.0
     return '{}{}'.format('{:f}'.format(num).rstrip('0').rstrip('.'), ['', 'K', 'M', 'B', 'T'][magnitude])
+
+def get_us_data(field=None):
+    """
+    Returns a JSON object with the following notable fields:
+    positive, negative, death, total (number of tests), recovered
+    hospitalizedCurrently, inIcuCurrently, onVentilatorCurrently
+    deathIncrease, hospitalizedIncrease, positiveIncrease, negativeIncrease, totalTestResultsIncrease
+    """
+    j = rq.get("https://covidtracking.com/api/v1/us/current.json").json()[0]
+    return j[field] if field else j
 
 def process_data(imported):
     nyc = pd.DataFrame()
@@ -39,6 +50,10 @@ def get_tiles(nyc):
         },
         {
             "figure": short_format(last_row['Total Deaths']),
+            "subheader": "As of {}".format(d_today_str)
+        },
+        {
+            "figure": short_format(get_us_data('death')),
             "subheader": "As of {}".format(d_today_str)
         }
     ]
