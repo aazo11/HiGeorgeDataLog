@@ -28,25 +28,30 @@ def process_data(imported):
     
     return nyc
 
-def get_tiles(nyc):
+def get_updated_data(nyc):
     last_row = nyc.tail(1).iloc[0]
     d_str = datetime.strptime(last_row['Date'], '%m/%d/%Y').strftime('%-m/%-d/%Y')
-    d_today_str = datetime.now(pytz.timezone('US/Pacific')).strftime('%-m/%-d/%Y')
-    return [
-        {
-            "figure": short_format(last_row['Cases']),
-            "unit": "On {}".format(d_str)
-        },
-        {
-            "figure": short_format(last_row['Deaths']),
-            "unit": "On {}".format(d_str)
-        },
-        {
-            "figure": short_format(sum(nyc['Cases'])),
-            "unit": "As of {}".format(d_today_str)
-        },
-        {
-            "figure": short_format(last_row['Total Deaths']),
-            "unit": "As of {}".format(d_today_str)
-        }
-    ]
+    d_local = datetime.now(pytz.timezone('US/Eastern'))
+    d_today_str = d_local.strftime('%-m/%-d/%Y')
+    d_update_str = d_local.strftime('%A %-I:%M %p')
+    return {
+        "smart_tiles": [
+            {
+                "figure": short_format(last_row['Cases']),
+                "unit": "On {}".format(d_str)
+            },
+            {
+                "figure": short_format(last_row['Deaths']),
+                "unit": "On {}".format(d_str)
+            },
+            {
+                "figure": short_format(sum(nyc['Cases'])),
+                "unit": "As of {}".format(d_today_str)
+            },
+            {
+                "figure": short_format(last_row['Total Deaths']),
+                "unit": "As of {}".format(d_today_str)
+            }
+        ],
+        "subtitle": "Updated {} ET".format(d_update_str)
+    }

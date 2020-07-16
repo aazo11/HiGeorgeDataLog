@@ -39,21 +39,23 @@ def process_data(imported):
     
     return nyc
 
-def get_tiles(nyc):
+def get_updated_data(nyc):
     last_row = nyc.tail(1).iloc[0]
     d_str = datetime.strptime(last_row['Date'], '%m/%d/%Y').strftime('%-m/%-d/%Y')
     d_today_str = datetime.now(pytz.timezone('US/Pacific')).strftime('%-m/%-d/%Y')
-    return [
-        {
-            "figure": short_format(last_row['Deaths']),
-            "subheader": "On {}".format(d_str)
-        },
-        {
-            "figure": short_format(last_row['Total Deaths']),
-            "subheader": "As of {}".format(d_today_str)
-        },
-        {
-            "figure": short_format(get_us_data('death')),
-            "subheader": "As of {}".format(d_today_str)
-        }
-    ]
+    return {
+        "smart_tiles": [
+            {
+                "figure": short_format(last_row['Deaths']),
+                "subheader": "On {}".format(d_str)
+            },
+            {
+                "figure": short_format(last_row['Total Deaths']),
+                "subheader": "As of {}".format(d_today_str)
+            },
+            {
+                "figure": short_format(get_us_data('death')),
+                "subheader": "As of {}".format(d_today_str)
+            }
+        ]
+    }

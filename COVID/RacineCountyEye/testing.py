@@ -52,19 +52,21 @@ def process_data(df):
     return new_df
 
 
-def get_tiles(df):
+def get_updated_data(df):
     last_row = df.tail(1).iloc[0]
     prev_row = df.tail(2).iloc[0]
     d_str = last_row['Date']
     d_today_str = dt.datetime.now(pytz.timezone('US/Pacific')).strftime('%-m/%-d/%Y')
-    return [
-        {
-            "figure": short_format(sum(df['Tests per day'])),
-            "subheader": "As of {}".format(d_today_str)
-        },
-        {
-            "figure": "{:.1%}".format(last_row['7 day rolling tests average']),
-            "subheader": "As of {}".format(d_today_str),
-            "value_change": round(last_row['7 day rolling tests average'] - prev_row['7 day rolling tests average'], 2)
-        }
-    ]
+    return {
+        "smart_tiles": [
+            {
+                "figure": short_format(sum(df['Tests per day'])),
+                "subheader": "As of {}".format(d_today_str)
+            },
+            {
+                "figure": "{:.1%}".format(last_row['7 day rolling tests average']),
+                "subheader": "As of {}".format(d_today_str),
+                "value_change": round(last_row['7 day rolling tests average'] - prev_row['7 day rolling tests average'], 2)
+            }
+        ]
+    }

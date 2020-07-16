@@ -12,12 +12,14 @@ def process_data(zipc):
     return finalzip
 
 
-def get_tiles(bk):
+def get_updated_data(bk):
     ix = bk["Total COVID Cases"].idxmax()
     max_cases = bk.loc[ix]
-    return [
-        {
-            "figure": str(max_cases["Total COVID Cases"]),
-            "subheader": "{} - {}".format(max_cases["Neighborhood"].split('/')[0], ix)
-        }
-    ]
+    return {
+        "smart_tiles": [
+            {
+                "figure": str(max_cases["Total COVID Cases"]),
+                "subheader": "{} - {}".format(max_cases["Neighborhood"].split('/')[0], ix)
+            }
+        ]
+    }

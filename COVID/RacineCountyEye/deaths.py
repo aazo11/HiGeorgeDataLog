@@ -52,22 +52,24 @@ def process_data(df):
     return new_df
 
 
-def get_tiles(df):
+def get_updated_data(df):
     last_row = df.tail(1).iloc[0]
     prev_row = df.tail(2).iloc[0]
     d_str = last_row['Date']
     d_today_str = dt.datetime.now(pytz.timezone('US/Pacific')).strftime('%-m/%-d/%Y')
-    return [
-        {
-            "figure": short_format(sum(df['Deaths per day'])),
-            "subheader": "As of {}".format(d_today_str)
-        },
-        {
-            "figure": short_format(last_row['Deaths per day']),
-            "subheader": "On {}".format(d_str)
-        },
-        {
-            "figure": short_format(get_us_data('death')),
-            "subheader": "As of {}".format(d_today_str)
-        }
-    ]
+    return {
+        "smart_tiles": [
+            {
+                "figure": short_format(sum(df['Deaths per day'])),
+                "subheader": "As of {}".format(d_today_str)
+            },
+            {
+                "figure": short_format(last_row['Deaths per day']),
+                "subheader": "On {}".format(d_str)
+            },
+            {
+                "figure": short_format(get_us_data('death')),
+                "subheader": "As of {}".format(d_today_str)
+            }
+        ]
+    }
