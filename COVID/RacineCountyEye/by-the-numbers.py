@@ -27,7 +27,7 @@ def process_data(df):
     }
 
     new_df = df[cols.keys()].rename(columns=cols).fillna(0)
-    new_df['Date'] = pd.to_datetime(new_df['Date']).apply(lambda x: x.strftime("%-m/%-d"))
+    new_df['Date'] = pd.to_datetime(new_df['Date']).apply(lambda x: x.strftime("%-m/%-d/%Y"))
     new_df['Deaths per day'] = new_df['Deaths per day'].astype(int)
     new_df['Cases per day'] = new_df['Cases per day'].astype(int)
     new_df['Negative tests per day'] = new_df['Negative tests per day'].astype(int)
@@ -43,7 +43,7 @@ def process_data(df):
 def get_updated_data(df):
     last_row = df.tail(1).iloc[0]
     prev_row = df.tail(2).iloc[0]
-    d_str = last_row['Date']
+    d_str = (dt.datetime.strptime(last_row['Date'], '%-m/%-d/%Y') - dt.timedelta(days=1)).strftime('%-m/%-d')
     d_today_str = dt.datetime.now(pytz.timezone('US/Pacific')).strftime('%-m/%-d')
     return {
         "smart_tiles": [
