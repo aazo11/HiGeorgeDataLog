@@ -12,7 +12,7 @@ def process_data(zipc):
     return finalzip
 
 
-def get_updated_data(bk):
+def get_updated_data(bk, di):
     ix = bk["Total COVID Cases"].idxmax()
     max_cases = bk.loc[ix]
     return {

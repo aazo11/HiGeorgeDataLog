@@ -10,5 +10,5 @@ def process_data(r):
     final_r['one'] = 1
     return final_r
 
-def get_updated_data(df):
+def get_updated_data(df, di):
     return None

@@ -30,7 +30,7 @@ def process_data(df):
     return df
 
 
-def get_updated_data(df):
+def get_updated_data(df, di):
     last_row = df.tail(1).iloc[0]
     prev_row = df.tail(2).iloc[0]
     d_str = last_row['Date'] # Change #

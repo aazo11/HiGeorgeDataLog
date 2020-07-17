@@ -45,7 +45,7 @@ def process_data(sfcases):
   cases['7 day average'] = average
   return cases
 
-def get_updated_data(df):
+def get_updated_data(df, di):
   last_row = df.tail(1).iloc[0]
   d_today_str = dt.datetime.now(pytz.timezone('US/Pacific')).strftime('%-m/%-d')
   us = get_us_data()

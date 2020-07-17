@@ -48,7 +48,7 @@ def process_data(cap):
   df = pd.DataFrame(data=d, index=date)
   return df
 
-def get_updated_data(df):
+def get_updated_data(df, di):
   first_row = df.head(1).iloc[0]
   prev_day = df.head(2).iloc[1]
   d_str = dt.datetime.strptime(first_row.name, '%Y-%m-%dT%H:%M:%S.%f').strftime('%-m/%-d')

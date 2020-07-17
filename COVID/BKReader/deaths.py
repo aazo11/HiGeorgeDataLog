@@ -39,7 +39,7 @@ def process_data(imported):
     
     return nyc
 
-def get_updated_data(nyc):
+def get_updated_data(nyc, di):
     last_row = nyc.tail(1).iloc[0]
     d_str = datetime.strptime(last_row['Date'], '%m/%d/%Y').strftime('%-m/%-d')
     d_today_str = datetime.now(pytz.timezone('US/Pacific')).strftime('%-m/%-d')

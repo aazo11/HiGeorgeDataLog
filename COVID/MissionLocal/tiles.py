@@ -41,7 +41,7 @@ def percent_change(old, new):
 def process_data(df):
   return df
 
-def get_updated_data(df):
+def get_updated_data(df, di):
   now = dt.datetime.now(pytz.timezone('US/Pacific'))
   us = get_us_data()
   us_prev = get_us_data(date=now - dt.timedelta(days=1))

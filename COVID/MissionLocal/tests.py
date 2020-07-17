@@ -44,7 +44,7 @@ def process_data(tests):
   rate['Total tests'] = rate['tests']
   return rate
 
-def get_updated_data(df):
+def get_updated_data(df, di):
   last_row = df.tail(1).iloc[0]
   d_str = dt.datetime.strptime(last_row['specimen_collection_date'], '%Y-%m-%dT%H:%M:%S.%f').strftime('%-m/%-d')
   d_today_str = dt.datetime.now(pytz.timezone('US/Pacific')).strftime('%-m/%-d')
