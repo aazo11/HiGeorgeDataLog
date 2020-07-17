@@ -51,8 +51,8 @@ def process_data(cap):
 def get_updated_data(df):
   first_row = df.head(1).iloc[0]
   prev_day = df.head(2).iloc[1]
-  d_str = dt.datetime.strptime(first_row.name, '%Y-%m-%dT%H:%M:%S.%f').strftime('%-m/%-d/%Y')
-  d_today_str = dt.datetime.now(pytz.timezone('US/Pacific')).strftime('%-m/%-d/%Y')
+  d_str = dt.datetime.strptime(first_row.name, '%Y-%m-%dT%H:%M:%S.%f').strftime('%-m/%-d')
+  d_today_str = dt.datetime.now(pytz.timezone('US/Pacific')).strftime('%-m/%-d')
   us = get_us_data()
   return {
     "smart_tiles": [

@@ -58,7 +58,7 @@ def process_data(states):
 
 def get_updated_data(df):
   last_row = df.tail(1).iloc[0]
-  d_today_str = dt.datetime.now(pytz.timezone('US/Pacific')).strftime('%-m/%-d/%Y')
+  d_today_str = dt.datetime.now(pytz.timezone('US/Pacific')).strftime('%-m/%-d')
   us = get_us_data()
   ca = get_state_data('ca')
   return {

@@ -48,8 +48,8 @@ def process_data(wi):
 
 def get_updated_data(df):
     last_row = df.tail(1).iloc[0]
-    d_str = dt.datetime.strptime(last_row['Date'], '%m/%d').replace(year=dt.datetime.now().year).strftime('%-m/%-d/%Y')
-    d_today_str = dt.datetime.now(pytz.timezone('US/Pacific')).strftime('%-m/%-d/%Y')
+    d_str = dt.datetime.strptime(last_row['Date'], '%m/%d').replace(year=dt.datetime.now().year).strftime('%-m/%-d')
+    d_today_str = dt.datetime.now(pytz.timezone('US/Pacific')).strftime('%-m/%-d')
     return {
         "smart_tiles": [
             {

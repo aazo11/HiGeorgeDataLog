@@ -34,7 +34,7 @@ def get_updated_data(df):
     last_row = df.tail(1).iloc[0]
     prev_row = df.tail(2).iloc[0]
     d_str = last_row['Date'] # Change #
-    d_today_str = dt.datetime.now(pytz.timezone('US/Pacific')).strftime('%-m/%-d/%Y')
+    d_today_str = dt.datetime.now(pytz.timezone('US/Pacific')).strftime('%-m/%-d')
     return {
         "smart_tiles": [
             {

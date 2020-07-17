@@ -46,8 +46,8 @@ def process_data(tests):
 
 def get_updated_data(df):
   last_row = df.tail(1).iloc[0]
-  d_str = dt.datetime.strptime(last_row['specimen_collection_date'], '%Y-%m-%dT%H:%M:%S.%f').strftime('%-m/%-d/%Y')
-  d_today_str = dt.datetime.now(pytz.timezone('US/Pacific')).strftime('%-m/%-d/%Y')
+  d_str = dt.datetime.strptime(last_row['specimen_collection_date'], '%Y-%m-%dT%H:%M:%S.%f').strftime('%-m/%-d')
+  d_today_str = dt.datetime.now(pytz.timezone('US/Pacific')).strftime('%-m/%-d')
   return {
     "smart_tiles": [
         {
