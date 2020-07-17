@@ -67,7 +67,7 @@ def get_updated_data(df):
             {
                 "figure": "{:.1%}".format(last_row['7 day rolling tests average']),
                 "subheader": "As of {}".format(d_today_str),
-                "value_change": round(last_row['7 day rolling tests average'] - prev_row['7 day rolling tests average'], 2)
+                "value_change": round(last_row['7 day rolling tests average'] - prev_row['7 day rolling tests average'], 3) * 100
             }
         ]
     }
