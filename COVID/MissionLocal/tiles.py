@@ -42,11 +42,11 @@ def process_data(df):
   return df
 
 def get_updated_data(df, di):
-  now = dt.datetime.now(pytz.timezone('US/Pacific'))
   us = get_us_data()
-  us_prev = get_us_data(date=now - dt.timedelta(days=1))
+  prev = dt.datetime.strptime(str(us['date']), '%Y%m%d') - dt.timedelta(days=1)
+  us_prev = get_us_data(date=prev)
   ca = get_state_data('ca')
-  ca_prev = get_state_data('ca', date=now - dt.timedelta(days=1))
+  ca_prev = get_state_data('ca', date=prev)
   return {
     "smart_tiles": [
         {
