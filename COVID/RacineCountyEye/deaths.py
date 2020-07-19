@@ -61,7 +61,7 @@ def get_updated_data(df, di):
     return {
         "smart_tiles": [
             {
-                "figure": short_format(df['Total deaths']),
+                "figure": short_format(last_row['Total deaths']),
                 "subheader": "As of {}".format(d_today_str)
             },
             {

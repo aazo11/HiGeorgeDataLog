@@ -64,7 +64,7 @@ def get_updated_data(df, di):
                 "subheader": "On {}".format(d_str)
             },
             {
-                "figure": short_format(df['Total deaths']),
+                "figure": short_format(last_row['Total deaths']),
                 "subheader": "As of {}".format(d_today_str)
             }
         ]
