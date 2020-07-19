@@ -56,7 +56,7 @@ def get_updated_data(df, di):
                 "subheader": "On {}".format(d_str)
             },
             {
-                "figure": short_format(last_row['Total negative tests'] + last_row['Total cases']),
+                "figure": short_format(last_row['Total cases']),
                 "subheader": "As of {}".format(d_today_str)
             },
             {
