@@ -28,6 +28,7 @@ def get_us_data(field=None):
 
 def process_data(wi):
     wi.fillna(0, inplace=True)
+    wi = wi.sort_values(by = 'LoadDttm')
     new_cases = wi['POS_NEW'].astype(int)
     new_deaths = wi['DTH_NEW'].astype(int)
     new_deaths[new_deaths<0] = 0
