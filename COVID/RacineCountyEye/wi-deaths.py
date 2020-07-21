@@ -29,21 +29,31 @@ def get_us_data(field=None):
 def process_data(wi):
     wi.fillna(0, inplace=True)
     wi = wi.sort_values(by = 'LoadDttm')
-    new_cases = wi['POS_NEW'].astype(int)
-    new_deaths = wi['DTH_NEW'].astype(int)
+    new_cases = wi['POS_NEW'].fillna(0).astype(int)
+    new_deaths = wi['DTH_NEW'].fillna(0).astype(int)
     new_deaths[new_deaths<0] = 0
     new_cases[new_cases<0] = 0
 
     dates = wi['LoadDttm'].apply(lambda s: "{0[1]}/{0[2]}".format(s.split('/')).split(' ')[0])
+    wi['LoadDttm'] = dates
+    wi = wi.sort_values(by = 'LoadDttm')
 
+    temp = pd.DataFrame({'Date': dates,
+                'Cases per day': new_cases})
+
+    pos_test_rolling = wi['POS_NEW']/wi['TEST_NEW'].fillna(0).rolling(7).mean()
     clean = pd.DataFrame({'Date': dates,
-              'Cases per day': new_cases,
-             'Deaths per day': new_deaths})
+                'Cases per day': new_cases,
+                'Deaths per day': new_deaths,
+                '7 Day Average Positive Test Rate': pos_test_rolling,
+                        'Tests per day': wi['TEST_NEW']})
     case_avg = clean['Cases per day'].rolling(7).mean()
     clean['7 day rolling case average'] = case_avg
     death_sum = clean['Deaths per day'].cumsum()
+    clean['Total deaths'] = death_sum
     clean['Total cases'] = clean['Cases per day'].cumsum()
     clean['Total deaths'] = death_sum.astype(int)
+    clean = clean.sort_values(by='Date')
 
     return clean
 
