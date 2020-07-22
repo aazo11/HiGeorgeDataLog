@@ -38,12 +38,13 @@ def percent_change(old, new):
   return (new - old) / old * 100
 
 def process_data(sfcases):
+  sfcases['specimen_collection_date'] = sfcases['specimen_collection_date'].apply(lambda v: v.split('T')[0])
   cases = sfcases[['specimen_collection_date', 'case_count']].groupby('specimen_collection_date').sum()
   average = list(np.zeros(6))
   for i in range(7,len(cases)+1):
       average += [np.mean(cases['case_count'][i-7:i])]
   cases['7 day average'] = average
-  return cases
+  return cases.rename(columns={"case_count": "Case Count"})
 
 def get_updated_data(df, di):
   last_row = df.tail(1).iloc[0]
