@@ -38,6 +38,7 @@ def percent_change(old, new):
   return (new - old) / old * 100
 
 def process_data(tests):
+  tests['specimen_collection_date'] = tests['specimen_collection_date'].apply(lambda v: v.split('T')[0])
   tests.sort_values('specimen_collection_date', ascending = False)
   rate = tests[['specimen_collection_date', 'pct', 'tests']]
   rate['Positive tests rate'] = rate['pct'] * 100
@@ -46,7 +47,7 @@ def process_data(tests):
 
 def get_updated_data(df, di):
   last_row = df.tail(1).iloc[0]
-  d_str = dt.datetime.strptime(last_row['specimen_collection_date'], '%Y-%m-%dT%H:%M:%S.%f').strftime('%-m/%-d')
+  d_str = dt.datetime.strptime(last_row['specimen_collection_date'], '%Y-%m-%d').strftime('%-m/%-d')
   d_today_str = dt.datetime.now(pytz.timezone('US/Pacific')).strftime('%-m/%-d')
   return {
     "smart_tiles": [

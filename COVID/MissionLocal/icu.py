@@ -38,6 +38,7 @@ def percent_change(old, new):
   return (new - old) / old * 100
 
 def process_data(cap):
+  cap['date'] = cap['date'].apply(lambda v: v.split('T')[0])
   icu = cap[cap['bed_type'] == 'Intensive Care'].sort_values('date', ascending=False)
   other = icu[icu['status'] == 'Other Patients']['count']
   covid = icu[icu['status'] == 'COVID-19 (Confirmed & Suspected)']['count']
@@ -51,7 +52,7 @@ def process_data(cap):
 def get_updated_data(df, di):
   first_row = df.head(1).iloc[0]
   prev_day = df.head(2).iloc[1]
-  d_str = dt.datetime.strptime(first_row.name, '%Y-%m-%dT%H:%M:%S.%f').strftime('%-m/%-d')
+  d_str = dt.datetime.strptime(first_row.name, '%Y-%m-%d').strftime('%-m/%-d')
   d_today_str = dt.datetime.now(pytz.timezone('US/Pacific')).strftime('%-m/%-d')
   us = get_us_data()
   return {
