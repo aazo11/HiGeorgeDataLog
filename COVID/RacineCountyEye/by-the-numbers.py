@@ -32,14 +32,14 @@ def process_data(df):
     new_df['Negative tests per day'] = new_df['Negative tests per day'].astype(int)
     new_df['Tests per day'] = new_df['Tests per day'].astype(int)
     new_df['Total negative tests'] = new_df['Total negative tests'].astype(int)
+    new_df['Date'] = pd.to_datetime(new_df['Date'])
+    new_df = new_df.sort_values(by='Date')
+    new_df['Date'] = new_df['Date'].apply(lambda x: x.strftime("%-m/%-d/%Y"))
     new_df['Total deaths'] = new_df['Deaths per day'].cumsum()
     new_df['7 day rolling case average'] = new_df['Cases per day'].rolling(7).mean()
     new_df['7 day rolling deaths average'] = new_df['Deaths per day'].rolling(7).mean()
     tests = new_df[['Cases per day','Tests per day']].rolling(7).mean()
     new_df['7 day rolling tests average'] = tests['Cases per day'] / tests['Tests per day']
-    new_df['Date'] = pd.to_datetime(new_df['Date'])
-    new_df = new_df.sort_values(by='Date')
-    new_df['Date'] = new_df['Date'].apply(lambda x: x.strftime("%-m/%-d/%Y"))
     return new_df.reset_index(drop=True)
 
 
