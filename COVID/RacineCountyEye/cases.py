@@ -39,7 +39,6 @@ def process_data(df):
     }
 
     new_df = df[cols.keys()].rename(columns=cols).fillna(0)
-    new_df['Date'] = pd.to_datetime(new_df['Date']).apply(lambda x: x.strftime("%-m/%-d/%Y"))
     new_df['Deaths per day'] = new_df['Deaths per day'].astype(int)
     new_df['Cases per day'] = new_df['Cases per day'].astype(int)
     new_df['Negative tests per day'] = new_df['Negative tests per day'].astype(int)
@@ -50,7 +49,10 @@ def process_data(df):
     new_df['7 day rolling deaths average'] = new_df['Deaths per day'].rolling(7).mean()
     tests = new_df[['Cases per day','Tests per day']].rolling(7).mean()
     new_df['7 day rolling tests average'] = tests['Cases per day'] / tests['Tests per day']
-    return new_df
+    new_df['Date'] = pd.to_datetime(new_df['Date'])
+    new_df = new_df.sort_values(by='Date')
+    new_df['Date'] = new_df['Date'].apply(lambda x: x.strftime("%-m/%-d/%Y"))
+    return new_df.reset_index(drop=True)
 
 
 def get_updated_data(df, di):
