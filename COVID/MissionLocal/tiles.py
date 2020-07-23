@@ -2,68 +2,64 @@ import pandas as pd
 import numpy as np
 import datetime as dt
 import requests as rq
+import io
 import pytz
+import sys
+import importlib
 
-def short_format(num):
-    if num > -10000 and num < 10000:
-        return '{:,.4g}'.format(num)
-    num = float('{:.3g}'.format(num))
-    magnitude = 0
-    while abs(num) >= 1000:
-        magnitude += 1
-        num /= 1000.0
-    return '{}{}'.format('{:f}'.format(num).rstrip('0').rstrip('.'), ['', 'K', 'M', 'B', 'T'][magnitude])
+sys.path.insert(0,'..')
+import jhu_utils
+from script_utils import *
 
-def get_us_data(date=None, field=None):
-    """
-    Returns a JSON object with the following notable fields:
-    positive, negative, death, total (number of tests), recovered
-    hospitalizedCurrently, inIcuCurrently, onVentilatorCurrently
-    deathIncrease, hospitalizedIncrease, positiveIncrease, negativeIncrease, totalTestResultsIncrease
-    """
-    j = rq.get("https://covidtracking.com/api/v1/us/{}.json".format(date.strftime('%Y%m%d') if date else "current")).json()
-    j = j if date else j[0]
-    return j[field] if field else j
 
-def get_state_data(state, date=None, field=None):
-  """
-  Returns a JSON object with the following notable fields:
-    positive, negative, death, total (number of tests), recovered
-    hospitalizedCurrently, inIcuCurrently, onVentilatorCurrently
-    deathIncrease, hospitalizedIncrease, positiveIncrease, negativeIncrease, totalTestResultsIncrease
-  """
-  j = rq.get("https://covidtracking.com/api/v1/states/{}/{}.json".format(state, date.strftime('%Y%m%d') if date else "current")).json()
-  return j[field] if field else j
+bay_area = [
+    ("California", "San Francisco"),
+    ("California", "Santa Clara"),
+    ("California", "Contra Costa"),
+    ("California", "Alameda"),
+    ("California", "Marin"),
+    ("California", "San Mateo")
+]
 
-def percent_change(old, new):
-  return (new - old) / old * 100
+jhu = None
+
+def get_hash(df):
+    global jhu
+    jhu = jhu_utils.clean_jhu(jhu_utils.get_current(), bay_area)
+    return hash_dataframes(df, jhu.loc['San Francisco'])
+
 
 def process_data(df):
   return df
 
+
 def get_updated_data(df, di):
+  last_row = df.tail(1).iloc[0]
+  d_today_str = dt.datetime.now(pytz.timezone('US/Pacific')).strftime('%-m/%-d')
+  jhu_prev = jhu_utils.get_nearest_csv(dt.datetime.now() - dt.timedelta(hours=18))
+  jhu_prev = jhu_utils.clean_jhu(jhu_prev, bay_area)
   us = get_us_data()
-  prev = dt.datetime.strptime(str(us['date']), '%Y%m%d') - dt.timedelta(days=1)
-  us_prev = get_us_data(date=prev)
+  # prev = dt.datetime.strptime(str(us['date']), '%Y%m%d') - dt.timedelta(days=1)
+  # us_prev = get_us_data(date=prev)
   ca = get_state_data('ca')
-  ca_prev = get_state_data('ca', date=prev)
+  # ca_prev = get_state_data('ca', date=prev)
+  sf_now = jhu.loc["San Francisco"]["Confirmed"]
+  sf_prev = jhu_prev.loc["San Francisco"]["Confirmed"]
+  bay_now = jhu.sum()["Confirmed"]
+  bay_prev = jhu_prev.sum()["Confirmed"]
   return {
     "smart_tiles": [
         {
-          "figure": short_format(ca['positiveIncrease']),
-          "unit": "{}{}".format('+' if (ca['positiveIncrease'] - ca_prev['positiveIncrease']) >= 0 else '', short_format(ca['positiveIncrease'] - ca_prev['positiveIncrease'])),
-          "value_change": round(percent_change(ca_prev['positiveIncrease'], ca['positiveIncrease']), 1)
+          "figure": short_format(ca['positiveIncrease'])
         },
         {
-
+          "figure": short_format(sf_now - sf_prev)
         },
         {
-
+          "figure": short_format(bay_now - bay_prev)
         },
         {
-          "figure": short_format(us['positiveIncrease']),
-          "unit": "{}{}".format('+' if (us['positiveIncrease'] - us_prev['positiveIncrease']) >= 0 else '', short_format(us['positiveIncrease'] - us_prev['positiveIncrease'])),
-          "value_change": round(percent_change(us_prev['positiveIncrease'], us['positiveIncrease']), 1)
+          "figure": short_format(us['positiveIncrease'])
         }
     ]
   }

@@ -2,49 +2,41 @@ import pandas as pd
 import numpy as np
 import datetime as dt
 import requests as rq
+import io
 import pytz
+import sys
+import importlib
 
-def short_format(num):
-    if num >= 0 and num < 10000:
-        return '{:,.4g}'.format(num)
-    num = float('{:.3g}'.format(num))
-    magnitude = 0
-    while abs(num) >= 1000:
-        magnitude += 1
-        num /= 1000.0
-    return '{}{}'.format('{:f}'.format(num).rstrip('0').rstrip('.'), ['', 'K', 'M', 'B', 'T'][magnitude])
+sys.path.insert(0,'..')
+import jhu_utils
+from script_utils import *
 
-def get_us_data(field=None):
-    """
-    Returns a JSON object with the following notable fields:
-    positive, negative, death, total (number of tests), recovered
-    hospitalizedCurrently, inIcuCurrently, onVentilatorCurrently
-    deathIncrease, hospitalizedIncrease, positiveIncrease, negativeIncrease, totalTestResultsIncrease
-    """
-    j = rq.get("https://covidtracking.com/api/v1/us/current.json").json()[0]
-    return j[field] if field else j
 
-def get_state_data(state, field=None):
-  """
-  Returns a JSON object with the following notable fields:
-    positive, negative, death, total (number of tests), recovered
-    hospitalizedCurrently, inIcuCurrently, onVentilatorCurrently
-    deathIncrease, hospitalizedIncrease, positiveIncrease, negativeIncrease, totalTestResultsIncrease
-  """
-  j = rq.get("https://covidtracking.com/api/v1/states/{}/current.json".format(state)).json()
-  return j[field] if field else j
+bay_area = [
+    ("California", "San Francisco"),
+    ("California", "Santa Clara"),
+    ("California", "Contra Costa"),
+    ("California", "Alameda"),
+    ("California", "Marin"),
+    ("California", "San Mateo")
+]
 
-def percent_change(old, new):
-  return (new - old) / old * 100
+jhu = None
+
+def get_hash(df):
+    global jhu
+    jhu = jhu_utils.clean_jhu(jhu_utils.get_current(), bay_area)
+    return hash_dataframes(df, jhu.loc['San Francisco'])
+
 
 def process_data(states):
-  date = states[(states['Region'] == 'San Francisco') & (states['Date']>'2020-03-10')]['Date']
-  santaclara = states[(states['Region'] == 'Santa Clara') & (states['Date']>'2020-03-10')]['Estimated Effective R']
-  alam = states[(states['Region'] == 'Alameda') & (states['Date']>'2020-03-10')]['Estimated Effective R']
-  cc = states[(states['Region'] == 'Contra Costa') & (states['Date']>'2020-03-10')]['Estimated Effective R']
-  marin = states[(states['Region'] == 'Marin') & (states['Date']>'2020-03-10')]['Estimated Effective R']
-  smateo = states[(states['Region'] == 'San Mateo') & (states['Date']>'2020-03-10')]['Estimated Effective R']
-  sf = states[(states['Region'] == 'San Francisco') & (states['Date']>'2020-03-10')]['Estimated Effective R']
+  date = states[states['county'] == 'San Francisco']['date']
+  santaclara = states[states['county'] == 'Santa Clara']['totalcountdeaths']
+  alam = states[states['county'] == 'Alameda']['totalcountdeaths']
+  cc = states[states['county'] == 'Contra Costa']['totalcountdeaths']
+  marin = states[states['county'] == 'Marin']['totalcountdeaths']
+  smateo = states[states['county'] == 'San Mateo']['totalcountdeaths']
+  sf = states[states['county'] == 'San Francisco']['totalcountdeaths']
   deaths = pd.DataFrame()
 
   deaths['Date'] = date.iloc[:].values
@@ -56,18 +48,23 @@ def process_data(states):
   deaths['San Mateo'] = smateo.iloc[:].values
   return deaths
 
+
 def get_updated_data(df, di):
-  last_row = df.tail(1).iloc[0]
+  last_row = df.set_index('Date').tail(1).iloc[0]
   d_today_str = dt.datetime.now(pytz.timezone('US/Pacific')).strftime('%-m/%-d')
   us = get_us_data()
   ca = get_state_data('ca')
+  sf_now = jhu.loc["San Francisco"]["Deaths"]
+  bay_now = jhu.sum()["Deaths"]
   return {
     "smart_tiles": [
         {
-
+          "figure": short_format(bay_now - last_row.sum()),
+          "subheader": "On {}".format(d_today_str)
         },
         {
-
+          "figure": short_format(sf_now - last_row['SF']),
+          "subheader": "On {}".format(d_today_str)
         },
         {
           "figure": short_format(ca['deathIncrease']),
