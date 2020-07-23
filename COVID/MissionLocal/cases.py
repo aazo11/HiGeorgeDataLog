@@ -24,7 +24,7 @@ jhu = None
 def get_hash(df):
     global jhu
     jhu = jhu_utils.clean_jhu(jhu_utils.get_current(), bay_area)
-    return hash_dataframes(df, jhu['San Francisco'])
+    return hash_dataframes(df, jhu.loc['San Francisco'])
 
 
 def process_data(sfcases):
