@@ -16,7 +16,7 @@ def preprocess(**kwargs):
 
 
 def get_hash(df, **kwargs):
-    return hash_dataframes(df.set_index('Province_State').loc["Pennsylvania"])
+    return hash_dataframes(df.set_index('Province_State').loc["Pennsylvania"][["Confirmed", "Deaths"]])
 
 
 def process_data(df, **kwargs):
