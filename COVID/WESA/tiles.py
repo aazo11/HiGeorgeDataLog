@@ -41,6 +41,10 @@ def process_data(df, **kwargs):
   data.loc[dt.datetime.now(pytz.timezone('US/Eastern')).strftime("%-m/%-d/%y")] = (newest.iloc[0]["Confirmed"], newest.iloc[0]["Deaths"])
   data["New Cases"] = (data["Total Cases"].shift(-1) - data["Total Cases"]).shift(1).fillna(0).astype(int)
   data["New Deaths"] = (data["Total Deaths"].shift(-1) - data["Total Deaths"]).shift(1).fillna(0).astype(int)
+
+  # Replace negative deaths with 0
+  data["New Deaths"] = data["New Deaths"].apply(lambda v: v if v >= 0 else 0)
+
   data["New Cases 7 Day Average"] = data["New Cases"].rolling(7).mean().fillna(0)
   return data
 
