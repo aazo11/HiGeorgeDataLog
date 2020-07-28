@@ -47,12 +47,12 @@ def get_updated_data(df, di, **kwargs):
   return {
     "smart_tiles": [
         {
-          "figure": short_format(prev_row["Tests Per Day"]),
-          "subheader": "Reported on {}".format(d_prev)
+          "figure": short_format(last_row["Tests Per Day"]),
+          "subheader": "Reported on {}".format(d_str)
         },
         {
-          "figure": str(round(prev_row["Positive Test Rate"], 2)) + '%',
-          "subheader": "Reported on {}".format(d_prev)
+          "figure": str(round(last_row["Positive Test Rate"], 2)) + '%',
+          "subheader": "Reported on {}".format(d_str)
         },
     ]
   }
