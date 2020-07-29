@@ -51,6 +51,7 @@ def get_updated_data(df, di, **kwargs):
   d_str = (dt.datetime.strptime(last_row.name, '%m/%d/%y')).strftime('%-m/%-d')
   d_today_str = dt.datetime.now(pytz.timezone('US/Central')).strftime('%-m/%-d')
   return {
+    "subtitle": "Updated {} CT".format(d_today_str.strftime('%A %-I:%M %p')),
     "smart_tiles": [
         {
           "figure": short_format(last_row["New Cases"]),
