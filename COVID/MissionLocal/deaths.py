@@ -5,11 +5,14 @@ import requests as rq
 import io
 import pytz
 import sys
-import importlib
 
 sys.path.insert(0,'..')
 import jhu_utils
 from script_utils import *
+
+
+def preprocess(**kwargs):
+    return None
 
 
 bay_area = [
@@ -23,13 +26,14 @@ bay_area = [
 
 jhu = None
 
-def get_hash(df):
+def get_hash(df, **kwargs):
     global jhu
     jhu = jhu_utils.clean_jhu(jhu_utils.get_current(), bay_area)
     return hash_dataframes(df, jhu.loc['San Francisco'])
 
 
-def process_data(states):
+def process_data(ignore, **kwargs):
+  states = pd.read_csv("https://data.ca.gov/dataset/590188d5-8545-4c93-a9a0-e230f0db7290/resource/926fd08f-cc91-4828-af38-bd45de97f8c3/download/statewide_cases.csv")
   date = states[states['county'] == 'San Francisco']['date']
   santaclara = states[states['county'] == 'Santa Clara']['totalcountdeaths']
   alam = states[states['county'] == 'Alameda']['totalcountdeaths']
@@ -49,7 +53,7 @@ def process_data(states):
   return deaths
 
 
-def get_updated_data(df, di):
+def get_updated_data(df, di, **kwargs):
   last_row = df.set_index('Date').tail(1).iloc[0]
   d_today_str = dt.datetime.now(pytz.timezone('US/Pacific')).strftime('%-m/%-d')
   us = get_us_data()
@@ -78,3 +82,6 @@ def get_updated_data(df, di):
         }
     ]
   }
+
+
+CSV_URL = "https://data.sfgov.org/resource/tvq9-ec9w.csv?$order=specimen_collection_date"
