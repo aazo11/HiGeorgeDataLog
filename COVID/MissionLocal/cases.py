@@ -34,6 +34,11 @@ def process_data(sfcases):
   for i in range(7,len(cases)+1):
       average += [np.mean(cases['case_count'][i-7:i])]
   cases['7 day average'] = average
+
+  data = ['More reliable'] * len(cases)-4
+  data += ['Less reliable, likely to be updated'] * 4
+  cases['Data Reliability'] = data
+
   return cases.rename(columns={"case_count": "Case Count"})
 
 
