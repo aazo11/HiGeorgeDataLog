@@ -143,13 +143,13 @@ def process_data(df, **kwargs):
   df = df.set_index("Admin2").rename_axis("County").drop("Unassigned County")
   df = df.rename(columns={"Confirmed": "Total Cases", "Deaths": "Total Deaths"})
   df = pd.concat((df, pop_df), axis=1)
-  df["COVID per capita"] = df["Total Cases"] / df["Population"]
+  df["COVID per 1000"] = df["Total Cases"] * 1000 / df["Population"]
   return df
 
 
 # %%
 def get_updated_data(df, di, **kwargs):
-  max_idx = df["COVID per capita"].idxmax()
+  max_idx = df["COVID per 1000"].idxmax()
   max_row = df.loc[max_idx]
   return {
     "smart_tiles": [
