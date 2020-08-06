@@ -30,7 +30,7 @@ def process_data(tests, **kwargs):
       average += [np.mean(rate['Positive tests rate'][i-7:i])]
   rate['7 day average rate'] = average
 
-  data = ['More reliable'] * len(rate)-4
+  data = ['More reliable'] * (len(rate)-4)
   data += ['Less reliable, likely to be updated'] * 4
   rate['Data Reliability'] = data
 

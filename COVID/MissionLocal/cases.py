@@ -35,7 +35,7 @@ def process_data(sfcases):
       average += [np.mean(cases['case_count'][i-7:i])]
   cases['7 day average'] = average
 
-  data = ['More reliable'] * len(cases)-4
+  data = ['More reliable'] * (len(cases)-4)
   data += ['Less reliable, likely to be updated'] * 4
   cases['Data Reliability'] = data
 
