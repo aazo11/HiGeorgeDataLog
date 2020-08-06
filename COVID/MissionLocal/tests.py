@@ -38,7 +38,7 @@ def process_data(tests, **kwargs):
 
 
 def get_updated_data(df, di, **kwargs):
-  last_row = df.iloc[-3]
+  last_row = df.iloc[-5]
   d_str = dt.datetime.strptime(last_row['specimen_collection_date'], '%Y-%m-%d').strftime('%-m/%-d')
   d_today_str = dt.datetime.now(pytz.timezone('US/Pacific')).strftime('%-m/%-d')
   return {
