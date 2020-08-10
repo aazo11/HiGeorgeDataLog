@@ -29,7 +29,7 @@ def get_us_data(field=None):
 def process_data(df):
     cols = {
         "NAME": "County",
-        "LoadDttm": "Date",
+        "DATE": "Date",
         "NEGATIVE": "Total negative tests",
         "POSITIVE": "Total cases",
         "DTH_NEW": "Deaths per day",

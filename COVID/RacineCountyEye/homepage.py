@@ -17,7 +17,7 @@ def short_format(num):
 def process_data(df):
     cols = {
         "NAME": "County",
-        "LoadDttm": "Date",
+        "DATE": "Date",
         "NEGATIVE": "Total negative tests",
         "POSITIVE": "Total cases",
         "DTH_NEW": "Deaths per day",

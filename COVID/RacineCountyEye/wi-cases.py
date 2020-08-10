@@ -28,15 +28,15 @@ def get_us_data(field=None):
 
 def process_data(wi):
     wi.fillna(0, inplace=True)
-    wi = wi.sort_values(by = 'LoadDttm')
+    wi = wi.sort_values(by = 'DATE')
     new_cases = wi['POS_NEW'].fillna(0).astype(int)
     new_deaths = wi['DTH_NEW'].fillna(0).astype(int)
     new_deaths[new_deaths<0] = 0
     new_cases[new_cases<0] = 0
 
-    dates = wi['LoadDttm'].apply(lambda s: "{0[1]}/{0[2]}".format(s.split('/')).split(' ')[0])
-    wi['LoadDttm'] = dates
-    wi = wi.sort_values(by = 'LoadDttm')
+    dates = wi['DATE'].apply(lambda s: "{0[1]}/{0[2]}".format(s.split('/')).split(' ')[0])
+    wi['DATE'] = dates
+    wi = wi.sort_values(by = 'DATE')
 
     temp = pd.DataFrame({'Date': dates,
                 'Cases per day': new_cases})
