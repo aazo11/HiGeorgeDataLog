@@ -79,7 +79,7 @@ def get_updated_data(df, di, **kwargs):
   last_row = df.tail(1).iloc[0]
   prev_row = df.tail(2).iloc[0]
   d_str = (dt.datetime.strptime(last_row.name, '%m/%d/%y')).strftime('%-m/%-d')
-  d_today_str = dt.datetime.now(TZ).strftime('%-m/%-d')
+  d_today_str = dt.datetime.now(pytz.timezone(TZ)).strftime('%-m/%-d')
   return {
     "smart_tiles": [
         {
