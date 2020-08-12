@@ -24,7 +24,7 @@ def preprocess(**kwargs):
 
 # %%
 def get_hash(df, **kwargs):
-    return hash_dataframes(jhu_utils.clean_jhu(df, [(STATE, COUNTY)]))
+    return hash_dataframes(jhu_utils.clean_state(jhu_utils.get_current_state_level(), STATE))
 
 
 # %%
