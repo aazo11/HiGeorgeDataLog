@@ -1,3 +1,4 @@
+# %%
 import pandas as pd
 import numpy as np
 import datetime as dt
@@ -11,19 +12,22 @@ import jhu_utils
 from script_utils import *
 
 
+# %%
 def preprocess(**kwargs):
     return None
 
 
+# %%
 def get_hash(df, **kwargs):
     return None
 
 
+# %%
 def process_data(tests, **kwargs):
   tests['specimen_collection_date'] = tests['specimen_collection_date'].apply(lambda v: v.split('T')[0])
   tests.sort_values('specimen_collection_date', ascending = False)
-  rate = tests[['specimen_collection_date', 'pct', 'tests']]
-  rate['Positive tests rate'] = rate['pct'] * 100
+  rate = tests[['specimen_collection_date', 'pos', 'tests']].groupby('specimen_collection_date').agg(sum)
+  rate['Positive tests rate'] = rate['pos'] / rate['tests'] * 100
   rate['Total tests'] = rate['tests']
   average = list(np.zeros(6))
   for i in range(7,len(rate)+1):
@@ -37,9 +41,10 @@ def process_data(tests, **kwargs):
   return rate
 
 
+# %%
 def get_updated_data(df, di, **kwargs):
   last_row = df.iloc[-5]
-  d_str = dt.datetime.strptime(last_row['specimen_collection_date'], '%Y-%m-%d').strftime('%-m/%-d')
+  d_str = dt.datetime.strptime(last_row.name, '%Y-%m-%d').strftime('%-m/%-d')
   d_today_str = dt.datetime.now(pytz.timezone('US/Pacific')).strftime('%-m/%-d')
   return {
     "smart_tiles": [
@@ -55,4 +60,5 @@ def get_updated_data(df, di, **kwargs):
   }
 
 
+# %%
 CSV_URL = "https://data.sfgov.org/resource/nfpa-mg4g.csv?$order=specimen_collection_date"
