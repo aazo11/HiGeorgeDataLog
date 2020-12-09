@@ -18,7 +18,7 @@ def process_data(imported):
     nyc['Deaths'] = imported['BK_DEATH_COUNT']
     nyc['Cases'] = imported['BK_CASE_COUNT']
     nyc['Total Deaths'] = np.cumsum(nyc['Deaths'])
-    nyc['Date'] = imported['DATE_OF_INTEREST']
+    nyc['Date'] = imported['date_of_interest']
     
     average = list(np.zeros(4)) + list(np.ones(2)*0.5)
     for i in range(7,len(nyc)+1):

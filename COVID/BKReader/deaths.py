@@ -54,7 +54,7 @@ def get_updated_data(nyc, di):
                 "subheader": "As of {}".format(d_today_str)
             },
             {
-                "figure": short_format(get_us_data('death')),
+                "figure": short_format(get_us_data(field='death')),
                 "subheader": "As of {}".format(d_today_str)
             }
         ]
