@@ -1,0 +1,178 @@
+MODIFIED_ZCTA,Total COVID Cases,Total COVID Deaths,Positive test rate,Neighborhood
+10001,1086,28,6.59,Chelsea/NoMad/West Chelsea
+10002,4089,206,10.2,Chinatown/Lower East Side
+10003,1885,39,5.14,East Village/Gramercy/Greenwich Village
+10004,200,2,6.4,Financial District
+10005,283,0,5.24,Financial District
+10006,119,1,5.74,Financial District
+10007,267,4,4.88,TriBeCa
+10009,2508,88,7.41,Alphabet City/East Village/Stuyvesant Town-Cooper Village
+10010,1237,31,5.18,Flatiron/Gramercy/Kips Bay
+10011,1852,52,5.86,Chelsea
+10012,890,13,5.7,Greenwich Village/SoHo
+10013,1164,24,5.96,Hudson Square/Little Italy/SoHo/TriBeCa
+10014,1123,28,5.43,Hudson Square/Meatpacking District/West Village
+10016,2255,55,6.5,Kips Bay/Murray Hill/NoMad
+10017,609,15,5.98,East Midtown/Murray Hill
+10018,405,7,6.2,Hell's Kitchen/Midtown Manhattan
+10019,1749,53,6.37,Hell's Kitchen/Midtown Manhattan
+10021,1650,74,6.02,Lenox Hill/Upper East Side
+10022,1212,42,5.86,East Midtown
+10023,1965,61,5.53,Lincoln Square
+10024,1997,85,5.78,Upper West Side
+10025,3710,215,6.44,Manhattan Valley/Morningside Heights/Upper West Side
+10026,1906,68,9.53,Central Harlem (South)
+10027,2857,134,8.42,Central Harlem (South)/Morningside Heights/West Harlem
+10028,1593,42,5.96,Upper East Side/Yorkville
+10029,4630,254,11.23,East Harlem
+10030,1485,67,10.38,Central Harlem (North)
+10031,3418,161,11.85,Hamilton Heights/West Harlem
+10032,4104,199,12.74,Washington Heights (South)
+10033,3734,140,12.89,Washington Heights (North)/Washington Heights (South)
+10034,2644,84,12.85,Inwood/Washington Heights (North)
+10035,2277,152,11.58,East Harlem
+10036,1360,48,7.35,Hell's Kitchen/Midtown Manhattan
+10037,1056,78,10.44,Central Harlem (North)/East Harlem
+10038,968,38,7.56,Chinatown/Financial District
+10039,1369,76,11.17,Central Harlem (North)/Washington Heights (South)
+10040,3201,138,13.53,Washington Heights (North)
+10044,454,38,7.75,Roosevelt Island
+10065,1077,33,5.52,Lenox Hill/Upper East Side
+10069,289,3,6.15,Lincoln Square
+10075,1127,54,7.23,Lenox Hill/Upper East Side
+10128,2177,55,6.04,Upper East Side/Yorkville
+10280,237,2,5.18,Battery Park City
+10282,167,14,5.5,Battery Park City
+10301,3383,130,15.25,Silver Lake/St. George
+10302,1796,48,17.6,Elm Park
+10303,2296,61,15.75,Graniteville/Mariner's Harbor/Port Ivory
+10304,4065,228,16.31,New Dorp/Todt Hill
+10305,4173,110,17.69,Arrochar/Midland Beach/Shore Acres/South Beach Ocean Breeze
+10306,5569,181,17.13,Lighthouse Hill/Midland Beach/New Dorp/Oakwood
+10307,1369,22,16.97,Tottenville
+10308,2634,48,16.7,Great Kills
+10309,3197,49,17.04,Charleston/Prince's Bay/Woodrow
+10310,2142,45,15.32,Port Richmond/Randall Manor/West Brighton
+10312,5527,95,16.43,Annadale/Rossville
+10314,8450,287,16.97,Bloomfield/Freshkills Park
+10451,3695,167,14.03,Concourse/Melrose
+10452,6185,209,15.61,Concourse/Highbridge
+10453,6330,197,16.15,Morris Heights/Mount Hope/University Heights
+10454,2919,131,14.23,Mott Haven/Port Morris
+10455,3176,133,14.55,Mott Haven
+10456,6075,310,13.77,Claremont/Morrisania
+10457,5466,214,14.79,Belmont/Claremont/Mount Hope/Tremont
+10458,5884,158,15.38,Belmont/Fordham University/Kingsbridge
+10459,3778,185,14.36,Charlotte Gardens/Hunts Point
+10460,4379,158,15.24,Charlotte Gardens/Tremont/Van Nest/West Farms
+10461,4421,161,15.67,Morris Park/Pelham Bay/Westchester Square
+10462,5742,209,14.67,Parkchester/Pelham Parkway/Van Nest/Westchester Square
+10463,4993,253,13.13,Kingsbridge/Marble Hill/Riverdale/Spuyten Duyvil
+10464,304,12,11.98,City Island
+10465,3710,118,15.46,Country Club/Throgs Neck
+10466,5124,189,14.8,Edenwald/Wakefield
+10467,8107,388,15.1,Allerton/Norwood/Pelham Parkway/Williamsbridge
+10468,6715,251,16.75,Fordham/Kingsbridge/University Heights
+10469,5543,402,15.02,Allerton/Baychester/Pelham Gardens/Williamsbridge
+10470,1257,31,15.84,Wakefield/Woodlawn
+10471,1676,104,11.7,Fieldston/North Riverdale/Riverdale
+10472,5057,231,15.52,Soundview
+10473,4869,180,15.19,Castle Hill/Clason Point/Soundview
+10474,820,23,14.76,Hunts Point
+10475,3012,209,13.32,Co-op City/Edenwald
+11004,1173,76,12.03,Bellerose/Douglaston-Little Neck
+11101,2034,49,8.4,Astoria (South)/Long Island City/Sunnyside
+11102,1960,110,10.71,Astoria (North)
+11103,1991,73,9.92,Astoria (North)/Astoria (South)
+11104,1419,51,10.05,Sunnyside
+11105,1853,64,10.22,Ditmars Steinway
+11106,2144,72,10.44,Astoria (South)
+11109,252,2,6.37,Long Island City
+11201,2041,105,5.14,Brooklyn Heights/DUMBO/Downtown Brooklyn
+11203,4364,264,12.93,East Flatbush (North)/East Flatbush (South)
+11204,5710,186,16.14,Bensonhurst/Mapleton
+11205,2052,63,8.56,Bedford-Stuyvesant (West)/Clinton Hill/Fort Greene
+11206,4867,194,10.96,Williamsburg (South)
+11207,5939,266,13.47,Cypress Hills/East New York
+11208,7187,307,16.11,Cypress Hills/East New York
+11209,3973,145,11.15,Bay Ridge/Fort Hamilton
+11210,4284,180,14.44,Flatlands/Midwood
+11211,5751,160,9.75,East Williamsburg/Williamsburg (North)/Williamsburg (South)
+11212,4929,280,13.22,Ocean Hill-Brownsville
+11213,3694,168,11.86,Crown Heights (East)
+11214,5899,279,14.56,Bath Beach/Bensonhurst/Gravesend
+11215,2082,57,5.31,Gowanus/Park Slope/Windsor Terrace
+11216,2220,90,7.72,Bedford-Stuyvesant (West)/Crown Heights (West)
+11217,1625,94,6.43,Boerum Hill/Park Slope
+11218,4704,184,12.3,Kensington/Windsor Terrace
+11219,6664,219,15.05,Borough Park
+11220,6267,221,14.41,Sunset Park
+11221,4218,186,10.18,Bedford-Stuyvesant (East)/Bushwick
+11222,1579,41,6.78,Greenpoint
+11223,6940,186,17.4,Gravesend/Homecrest
+11224,3811,287,16.62,Brighton Beach/Coney Island/Seagate
+11225,2829,156,9.92,Crown Heights (West)/Prospect Lefferts Gardens
+11226,5425,337,11.69,Flatbush/Prospect Lefferts Gardens
+11228,2814,113,14.15,Bath Beach/Dyker Heights
+11229,6349,205,15.79,Gerritsen Beach/Homecrest/Sheepshead Bay
+11230,8523,315,17.0,Midwood
+11231,1317,44,6.18,Carroll Gardens/Cobble Hill/Red Hook
+11232,1936,48,12.9,Sunset Park
+11233,3459,170,10.7,Bedford-Stuyvesant (East)/Ocean Hill-Brownsville
+11234,5754,235,13.81,Bergen Beach/Flatlands/Marine Park/Mill Basin
+11235,7180,408,17.66,Brighton Beach/Manhattan Beach/Sheepshead Bay
+11236,5576,342,13.19,Canarsie
+11237,2794,124,11.21,Bushwick/East Williamsburg
+11238,2187,119,6.6,Clinton Hill/Prospect Heights
+11239,1166,108,15.2,East New York
+11354,3150,353,11.73,Flushing/Murray Hill
+11355,4965,226,13.82,Flushing/Murray Hill/Queensboro Hill
+11356,1637,50,13.79,College Point
+11357,2461,115,12.33,Whitestone
+11358,1847,61,10.43,Auburndale/Murray Hill
+11360,977,42,10.34,Bayside (North)
+11361,1334,66,10.3,Bayside (North)/Bayside (South)
+11362,839,47,10.31,Douglaston-Little Neck
+11363,309,9,9.21,Douglaston-Little Neck
+11364,1544,43,10.08,Bayside (South)/Oakland Gardens
+11365,2363,94,11.72,Auburndale/Fresh Meadows/Pomonok/Utopia
+11366,963,32,14.6,Fresh Meadows/Hillcrest
+11367,2812,78,13.65,Kew Gardens Hills/Pomonok
+11368,8976,475,15.48,Corona/North Corona
+11369,3501,202,16.18,Airport/East Elmhurst
+11370,2656,76,16.11,Jackson Heights/Rikers Island
+11372,5244,300,14.2,Jackson Heights
+11373,7388,312,14.7,Elmhurst
+11374,3159,123,14.14,Rego Park
+11375,4099,230,11.41,Forest Hills
+11377,6671,251,13.97,Woodside
+11378,2334,79,13.14,Maspeth
+11379,2480,135,13.26,Middle Village
+11385,6965,173,14.32,Glendale/Ridgewood
+11411,1246,52,14.18,Cambria Heights
+11412,2576,103,14.27,St. Albans
+11413,2584,116,13.77,Laurelton/Rosedale
+11414,2192,85,16.38,Hamilton Beach/Howard Beach/Lindenwood
+11415,1380,64,13.19,Kew Gardens
+11416,2124,79,17.1,Ozone Park
+11417,2633,65,17.24,Ozone Park
+11418,2984,101,16.15,Richmond Hill
+11419,4218,134,18.99,Richmond Hill/South Ozone Park
+11420,3991,124,18.01,South Ozone Park
+11421,3452,121,17.9,Woodhaven
+11422,2141,80,14.72,Rosedale
+11423,2471,123,15.99,Hollis/Holliswood
+11426,1357,44,15.58,Bellerose
+11427,1737,54,15.48,Bellerose/Hollis Hills/Holliswood
+11428,1461,67,15.7,Queens Village
+11429,2038,87,14.73,Queens Village
+11432,4573,282,15.66,Hillcrest/Jamaica Estates/Jamaica Hills
+11433,2348,112,14.51,Jamaica
+11434,4325,229,14.06,Airport/South Jamaica/Springfield Gardens/St. Albans
+11435,4217,179,16.17,Briarwood/Jamaica
+11436,1386,53,15.51,South Jamaica/South Ozone Park
+11691,5759,409,16.38,Edgemere/Far Rockaway
+11692,1398,96,13.81,Arverne/Edgemere
+11693,849,33,14.28,Arverne/Broad Channel
+11694,1763,91,14.85,Belle Harbor-Neponsit/Rockaway Park
+11697,448,8,13.82,Breezy Point
